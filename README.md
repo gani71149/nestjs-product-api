@@ -96,3 +96,29 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+# NestJS Swagger Api
+Swagger url(http://localhost:3000/api)
+
+
+# NestJS Books API
+
+## Interceptors
+
+### 1. LoggingInterceptor (Global)
+Logs every incoming request and outgoing response.
+
+### 2. TransformInterceptor (Controller)
+Wraps all responses in a standard format.
+
+### 3. CacheInterceptor (Method)
+Caches GET /books responses using Map.
+
+### 4. ErrorMappingInterceptor (Method)
+Converts JS Error into NestJS NotFoundException.
+
+## APIs
+GET /books
+GET /books/:id
+POST /books
