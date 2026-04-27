@@ -1,7 +1,11 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UseFilters, ValidationPipe } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
+import { ProductsExceptionFilter } from 'src/common/filters/products-exception.filter';
+import { ApiOperation } from '@nestjs/swagger';
+import { PurchaseProductDto } from './dto/purchase-product.dto';
 
+@UseFilters(ProductsExceptionFilter)
 @Controller('products')
 export class ProductsController {
   constructor(private readonly prodService: ProductsService) {}
@@ -24,5 +28,14 @@ export class ProductsController {
     @Body(ValidationPipe) createProductDto: CreateProductDto,
   ) {
     return this.prodService.create(createProductDto);
+  }
+
+  @Post(':id/purchase')
+  @ApiOperation({ summary: 'Purchase a product by ID' })
+  purchase(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() body: PurchaseProductDto
+  ) {
+    return this.prodService.purchaseProduct(id, body.quantity);
   }
 }

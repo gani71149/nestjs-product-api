@@ -98,6 +98,20 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 
+
+
+# NestJS Product Management API
+
+## Features
+
+- Get all products
+- Get product by ID
+- Purchase products
+- Custom exception handling
+- Scoped exception filters
+- Swagger documentation
+
+
 # NestJS Swagger Api
 Swagger url(http://localhost:3000/api)
 
@@ -122,3 +136,54 @@ Converts JS Error into NestJS NotFoundException.
 GET /books
 GET /books/:id
 POST /books
+
+---
+
+# Exception Handling
+
+## OutOfStockException
+
+Returns HTTP 422 when requested quantity exceeds stock.
+
+---
+
+## ProductsExceptionFilter
+
+Scoped only to ProductsController.
+
+Customizes NotFoundException responses.
+
+---
+
+# Routes
+
+## GET /products
+
+Get all products
+
+---
+
+## GET /products/:id
+
+Get product by ID
+
+---
+
+## POST /products/:id/purchase
+
+Purchase product
+
+Body:
+
+{
+  "quantity": 2
+}
+
+---
+
+# Swagger
+
+Run app:
+
+```bash
+npm run start:dev

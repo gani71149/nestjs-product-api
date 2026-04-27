@@ -1,12 +1,15 @@
-import { IsString, IsNumber, IsEnum } from 'class-validator';
+import { IsString, IsNumber, IsEnum, isNumber } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
-  name: string;
+  name!: string;
 
   @IsNumber()
-  price: number;
+  price!: number;
 
   @IsEnum(['ELECTRONICS', 'CLOTHING', 'FOOTWEAR', 'ACCESSORIES'])
-  category: string;
+  category!: string;
+
+  @IsNumber()
+  stock!: number;
 }
